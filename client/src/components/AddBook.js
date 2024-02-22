@@ -1,45 +1,67 @@
-import { useQuery } from "@apollo/client";
-import {Plus} from "lucide-react";
-import { getAuthorsQuery } from "../queries/Queries";
+import { useQuery, useMutation } from "@apollo/client";
+import { Plus } from "lucide-react";
+import { addBookMutation, getAuthorsQuery, getBooksQuery } from "../queries/Queries";
+import { useState } from "react";
 
 const AddBook = () => {
-    const {loading, error, data}=useQuery(getAuthorsQuery);
+    const [book, setBook] = useState({
+        name: "",
+        genre: "",
+        authorId: ""
+    })
+
+    const { loading, data, error } = useQuery(getAuthorsQuery);
+    const [mutateFunction] = useMutation(addBookMutation);
 
     if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.message}</p>
+    if (error) return <p>Error: {error.message}</p>;
 
-    console.log(data);
+    function handleSubmit(event) {
+        event.preventDefault();
+        mutateFunction({
+            variables: {
+                name: book.name,
+                genre: book.genre,
+                authorId: book.authorId
+            },
+            refetchQueries: [{
+                query: getBooksQuery
+            }]
+        })
+
+    }
+
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="name">
-                    Name: 
+                    Name:
                 </label>
-                <input type="text" id="name"></input>
+                <input type="text" id="name" onChange={(e) => { setBook({ ...book, name: e.target.value }) }}></input>
             </div>
             <div>
                 <label htmlFor="Genre">
-                    Genre: 
+                    Genre:
                 </label>
-                <input id="Genre" type="text"></input>
+                <input id="Genre" type="text" onChange={(e) => { setBook({ ...book, genre: e.target.value }) }}></input>
             </div>
             <div>
                 <label htmlFor="Author">
-                    Author: 
+                    Author:
                 </label>
-                <select id="Author" >
+                <select id="Author" onChange={(e) => setBook({ ...book, authorId: e.target.value })}>
                     <option>Choose an Author from List!</option>
                     {
-                        data.authors.map((author)=>{
+                        data.authors.map((author) => {
                             return (
-                                <option key={author.id}>{author.name}</option>
+                                <option key={author.id} value={author.id}>{author.name}</option>
                             )
                         })
                     }
                 </select>
             </div>
             <div>
-                <button><Plus/></button>
+                <button><Plus /></button>
             </div>
         </form>
     )

@@ -8,6 +8,7 @@ const app=express();
 connectDatabase();
 const handler=createHandler({schema});
 
+// Allow cross-origin requests
 app.use(cors());
 
 app.get("/",(req, res, next)=>{

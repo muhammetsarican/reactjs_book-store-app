@@ -11,10 +11,11 @@ const BookType = new GraphQLObjectType({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
         genre: { type: GraphQLString },
+        authorId: {type: GraphQLID},
         author: {
             type: AuthorType,
             resolve(parent, args) {
-                return AuthorModel.findById(parent.id);
+                return AuthorModel.findById(parent.authorId);
             }
         }
     })
