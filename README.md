@@ -14,6 +14,7 @@ I created a book store app with GraphQL and ReactJs from [Net Ninja](https://www
 ReactJs
 Tailwind
 GraphQL
+MongoDb
 ```
 ## Features
 
@@ -23,6 +24,8 @@ GraphQL
 
 
 ## Run Locally
+
+**First you need to create the '.env' file in the backend directory. Then add the 'MONGO_URI' field to connect to MongoDb.**
 
 Clone the project
 
