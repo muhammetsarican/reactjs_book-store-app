@@ -32,8 +32,8 @@ const AddBook = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="fixed bg-white bottom-0 left-0 w-[60%] p-5">
-            <div className="w-[50%]">
+        <form onSubmit={handleSubmit}>
+            <div className="w-full">
                 <h3 className="text-start mb-5 ms-5 font-bold text-xl uppercase">Add new book</h3>
                 <div className="grid grid-cols-2 gap-10">
                     <label htmlFor="name" className="text-right p-3 ">
@@ -62,7 +62,7 @@ const AddBook = () => {
                         }
                     </select>
                 </div>
-                <div className="">
+                <div className="flex justify-end m-5">
                     <button className="flex justify-center items-center text-white text-3xl bg-[#ad1457] border-none py-0 px-[10px] rounded-full h-[40px] w-[40px]"><Plus /></button>
                 </div>
             </div>
