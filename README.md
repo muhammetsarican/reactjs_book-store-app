@@ -25,12 +25,6 @@ MongoDb
 
 ## Run Locally
 
-**First you need to create the '.env' file in the backend directory. Then add the 'MONGO_URI' field to connect to MongoDb.**
-Or you can run this code after add your mongo uri:
-```bash
-  echo 'MONGO_URI=<your_mongodb_connection_string>' > .env
-```
-
 Clone the project
 
 ```bash
@@ -42,6 +36,12 @@ Go to the project directory
 ```bash
   cd reactjs_book-store-app
 
+```
+
+**First you need to create the '.env' file in the backend directory. Then add the 'MONGO_URI' field to connect to MongoDb.**
+Or you can run this code after add your mongo uri:
+```bash
+  echo 'MONGO_URI=<your_mongodb_connection_string>' > .env
 ```
 
 **Project has two directories:**
